@@ -7,10 +7,10 @@ pub fn run() {
 
   let mut content = String::new();
   if utils::is_dir(&from) {
-    for path in utils::read_dir(&from) {
-      let url = path.unwrap().path();
-      if utils::is_markdown(&url) {
-        content = format!("{}{}", utils::get_content_from_path(&url), content);
+    let paths = utils::read_dir(&from);
+    for path in paths {
+      if utils::is_markdown(&path) {
+        content = format!("{}{}", utils::get_content_from_path(&path), content);
       }
     }
   } else {

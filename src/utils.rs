@@ -4,8 +4,11 @@ pub fn is_dir(filename: &String) -> bool {
   fs::metadata(&filename).unwrap().is_dir()
 }
 
-pub fn read_dir(filename: &String) -> fs::ReadDir {
-  fs::read_dir(&filename).unwrap()
+pub fn read_dir(filename: &String) -> Vec<path::PathBuf> {
+  fs::read_dir(&filename)
+    .unwrap()
+    .map(|t| t.unwrap().path())
+    .collect()
 }
 
 pub fn write_file(filename: &String, content: &String) -> () {
@@ -29,6 +32,6 @@ pub fn get_content_from_path(path: &path::Path) -> String {
   let data = fs::read_to_string(path);
   match data {
     Ok(t) => t,
-    _ => String::new(),
+    _ => "".to_string(),
   }
 }
