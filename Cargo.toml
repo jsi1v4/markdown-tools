@@ -1,9 +1,13 @@
 [package]
-name = "markdown-tools"
+name = "md-tool"
 version = "1.0.0"
 authors = ["Jose Silva <me@jsi1v4.dev>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[alias]
+start = "run"
+start-prod = "run --release"
+build = "build"
+build-prod = "build --release"
 
 [dependencies]
