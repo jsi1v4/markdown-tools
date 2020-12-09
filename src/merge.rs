@@ -7,20 +7,25 @@ pub fn run() {
 
   let mut content = String::new();
   if utils::is_dir(&from) {
-    let paths = utils::read_dir(&from);
+    let mut paths = utils::read_dir(&from);
+    paths.sort();
     for path in paths {
-      if utils::is_markdown(&path) {
-        content = format!("{}{}", utils::get_content_from_path(&path), content);
-      }
+      content = format!("{}{}\r\n", content, get_content(&path));
     }
   } else {
-    content = utils::get_content_from_filename(&from);
+    content = get_content(&from);
   }
 
-  if !content.is_empty() {
+  if content.is_empty() {
+    println!("No content!");
+  } else {
     utils::write_file(&to, &content);
     println!("Merge done.");
-  } else {
-    println!("No content!");
   }
+}
+
+fn get_content(path: &String) -> String {
+  let data = utils::get_data_from_filename(&path);
+  let md_content = utils::get_md_content(&data);
+  md_content.body().to_string()
 }
