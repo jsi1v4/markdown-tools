@@ -1,7 +1,9 @@
 # Markdown Tools
+
 Markdown tools in Rust lang.
 
 ## How to use
+
 ```
   cargo build --release
 
@@ -13,6 +15,3 @@ Markdown tools in Rust lang.
 ```
 
 > Note: you can copy bin (md-tool) to your system
-
-## About
-- **Author**: Jose Silva
